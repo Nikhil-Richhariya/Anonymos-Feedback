@@ -84,7 +84,7 @@ const page = () => {
       router.replace(`/verify/${username}`);
       setIsSumbmitting(false);
     } catch (error) {
-      console.error("Error in sign-up of user", error);
+      console.error("Error in sign-up of user 001", error);
       const axiosError = error as AxiosError<ApiResponse>;
 
       let errorMessage = axiosError.response?.data.message;
@@ -119,7 +119,9 @@ const page = () => {
                   <FormControl>
                     <Input
                       placeholder="username"
+
                       {...field}
+                      value={field.value}
                       onChange={(e) => {
                         field.onChange(e);
                         debounced(e.target.value);
@@ -142,9 +144,9 @@ const page = () => {
               control={form.control}
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Username</FormLabel>
+                  <FormLabel>Email </FormLabel>
                   <FormControl>
-                    <Input placeholder="Email" {...field} />
+                    <Input placeholder="email" {...field} />
                   </FormControl>
                   <FormDescription>
                     This is your public display name.

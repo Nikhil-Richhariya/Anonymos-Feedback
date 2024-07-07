@@ -12,6 +12,8 @@ export async function POST(request : Request) {
 
         const decodedUsername = decodeURIComponent(username)
 
+        console.log("decoded username : ",decodedUsername)
+
         const user = await UserModel.findOne({username : decodedUsername }); 
 
         if(!user) {
@@ -26,7 +28,7 @@ export async function POST(request : Request) {
         }
 
 
-        const isCodeValid = user.verifyCode === code ; 
+        const isCodeValid = user.verifyCode == code ; 
         const isCodeNotExpired = new Date(user.verifyCodeExpiry) > new Date() ;
         
         if(isCodeValid && isCodeNotExpired) {
